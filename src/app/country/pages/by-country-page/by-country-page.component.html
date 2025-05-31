@@ -1,0 +1,16 @@
+<country-search-input
+  placeholder="Buscar por el país"
+  (value)="query.set($event)"
+  [initialValue]="query()"
+/>
+
+<!--
+  "[countries]" es un Input Binding
+  ?? []: si no tiene valor devuelve un array vacío
+-->
+<country-list
+  [countries]="countryResource.value() ?? []"
+  [errorMessage]="countryResource.error()"
+  [isEmpty]="countryResource.value()?.length === 0"
+  [isLoading]="countryResource.isLoading()"
+/>

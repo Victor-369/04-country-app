@@ -1,0 +1,20 @@
+<!--
+  "$event" es lo que emita el evento en country-search-input para pasárselo a la función "onSearch".
+  "(value)" es un Output Binding
+-->
+<country-search-input
+  placeholder="Buscar por la capital"
+  (value)="query.set($event)"
+  [debounceTime]="300"
+  [initialValue]="query()"
+/>
+
+<!--
+  "[countries]" es un Input Binding
+-->
+<country-list
+  [countries]="countryResource.value() ?? []"
+  [errorMessage]="countryResource.error()"
+  [isEmpty]="countryResource.value()?.length === 0"
+  [isLoading]="countryResource.isLoading()"
+/>
